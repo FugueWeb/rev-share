@@ -1,0 +1,60 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RevShare - Simple Revenue Sharing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="./app.css" rel='stylesheet' type='text/css'>
+  <script src="./app.js"></script>
+</head>
+<body>
+  <div class="container-fluid">
+    <h1>RevShare</h1>
+    <h3 style="margin-top: 0px; margin-bottom: 30px;">Revenue Sharing Contract</h3>
+
+    <table class="table table-fluid">
+      <tr>
+        <th></th>
+        <th>Address</th>
+        <th>Balance</th>
+      </tr>
+      <tr>
+        <th>Contract</th>
+        <td><span class="black"><span id="c_address" class="c_address"></span></span></td>
+        <td><span class="black"><span id="c_balance"></span> ETH</span></td>
+      </tr>
+      <tr>
+        <th>Recipient A</th>
+        <td><span class="black"><span id="a_address">0xf6549feb3bc3dcfc24b7b2b43aabb1b53169fb06</span></span></td>
+        <td><span class="black"><span id="a_balance"></span> ETH</span></td>
+      </tr>
+      <tr>
+        <th>Recipient B</th>
+        <td><span class="black"><span id="b_address">0x6c21c01e97374f324f863f73112207d4122eb08b</span></span></td>
+        <td><span class="black"><span id="b_balance"></span> ETH</span></td>
+      </tr>
+    </table>
+
+    <div class="row">
+      <h2 style="text-align: center; padding-top: 20px;">Pay Contract</h2>
+      <div class="col-lg-6 payment payment-web">
+        <h3>Web</h3>
+        <div id="status"></div>
+        <div class="col-lg-8" style="padding-top: 4px;"><input style="height: 38px;" type="text" class="form-control" id="amount" placeholder="Amount in ETH"/></div>
+        <div class="col-lg-4"><button class="btn btn-primary btn-lg" onclick="send();">SEND</button></div>
+        <div class="col-lg-12" style="padding-top: 10px;">Coinbase Balance: <span id="cb_balance"></span></div>
+      </div>
+      <div class="col-lg-6 payment">
+        <h3>Mobile</h3>
+        <div id="qr"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>
