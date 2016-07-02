@@ -19,6 +19,8 @@ Simple revenue sharing dApp. Splits incoming ether between the owners of the con
 * Dynamically pass owners instead of hardcoding
 * Better test coverage
 * Flexible ownership stuctures with configurable percentages
+* Select different account
+* On-the-fly account unlocking
 
 ## License
 [MIT](https://github.com/dsystems-io/rev-share/blob/master/LICENSE)
