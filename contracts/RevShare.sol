@@ -1,10 +1,8 @@
 /**
  * Simple revenue sharing contract.
  * Receives Ether payments and divides that payment amongst the owners.
- * @title RevShare Contract
+ * @title RevShare
  * @author Paul Szczesny
- * @dev TODO: Make ownership flexible with different stuctures rather than just even splits.
- * @dev TODO: Make ownership and creator variables dynamic so they can be changed
  */
 
 contract RevShare {
