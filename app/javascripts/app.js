@@ -13,10 +13,10 @@ function setAddress() {
 }
 
 function refreshBalances() {
-  document.getElementById("c_balance").innerHTML = web3.fromWei(web3.eth.getBalance(RevShare.deployed_address), "ether");
-  document.getElementById("a_balance").innerHTML = web3.fromWei(web3.eth.getBalance(document.getElementById("a_address").innerHTML), "ether");
-  document.getElementById("b_balance").innerHTML = web3.fromWei(web3.eth.getBalance(document.getElementById("b_address").innerHTML), "ether");
-  document.getElementById("cb_balance").innerHTML = web3.fromWei(web3.eth.getBalance(web3.eth.coinbase), "ether")+ " ETH";
+  document.getElementById("c_balance").innerHTML = web3.fromWei(web3.eth.getBalance(RevShare.deployed_address), "ether").toFixed(5);
+  document.getElementById("a_balance").innerHTML = web3.fromWei(web3.eth.getBalance(document.getElementById("a_address").innerHTML), "ether").toFixed(5);
+  document.getElementById("b_balance").innerHTML = web3.fromWei(web3.eth.getBalance(document.getElementById("b_address").innerHTML), "ether").toFixed(5);
+  document.getElementById("cb_balance").innerHTML = web3.fromWei(web3.eth.getBalance(web3.eth.coinbase), "ether").toFixed(5)+ " ETH";
 };
 
 function send() {
