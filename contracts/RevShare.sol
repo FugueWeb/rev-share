@@ -18,16 +18,10 @@ contract RevShare {
 	}
 
 	function () returns (bool success) {
-		uint amount = this.balance;
-		// If uneven number, subtract 1
-		if ( amount % 2 != 0  ) amount--;
-		uint toSend = amount/2;
-
-		if(!owner1.send(toSend)) return false;
-		if(!owner2.send(toSend)) {
-			throw;
-			return true;
-		}
+		uint amount = msg.value / 2;
+		if (!owner1.send(amount)) throw;
+		if (!owner2.send(msg.value - amount)) throw;
+		return true;
 	}
 
 	function kill() {

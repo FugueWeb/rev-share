@@ -42,11 +42,14 @@ contract('RevShare', function(accounts) {
     var owner1_balance_before = web3.eth.getBalance(owner1).toNumber();
     var owner2_balance_before = web3.eth.getBalance(owner2).toNumber();
     var diff = amount / 2;
+    var isOdd = amount % 2;
 
     web3.eth.sendTransaction({from: web3.eth.coinbase, to: RevShare.deployed_address, value: amount}, function(error, result) {
       web3.eth.getTransactionReceiptMined(result).then(function(receipt) {
         assert.equal(web3.eth.getBalance(owner1).toNumber(), owner1_balance_before + diff, "Owner 1 balance is off");
-        assert.equal(web3.eth.getBalance(owner2).toNumber(), owner2_balance_before + diff, "Owner 2 balance is off");
+        //Since our contract sends uneven change to owner 2, our test needs to take this into consideration.
+        if(isOdd == 0) assert.equal(web3.eth.getBalance(owner2).toNumber(), owner2_balance_before + diff, "Owner 2 balance is off");
+        else assert.equal(web3.eth.getBalance(owner2).toNumber(), owner2_balance_before + (diff + 1), "Owner 2 balance is off");
       }).then(done).catch(done);
     });
   });
