@@ -16,7 +16,7 @@ Newly added functionality:
 *  `truffle serve`
 
 ## Preview
-![alt text](https://raw.githubusercontent.com/dsystems-io/rev-share/master/app/images/preview.png "App Preview")
+![alt text](https://raw.githubusercontent.com/FugueWeb/rev-share/master/app/images/preview.png "App Preview")
 
 ## Todo
 * Dynamically pass owners instead of hardcoding
