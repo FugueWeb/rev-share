@@ -25,6 +25,7 @@ contract RevShare {
 	}
 
 	function kill() {
-    if (msg.sender == creator) suicide(creator); // Kill contract
-  }
+    	if (msg.sender == creator) suicide(creator); // Kill contract
+  	}
+
 }

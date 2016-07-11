@@ -5736,10 +5736,10 @@ var Pudding =
 
   var contract_data = {
     abi: [{"constant":true,"inputs":[],"name":"creator","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[],"name":"kill","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"owner2","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[],"name":"owner1","outputs":[{"name":"","type":"address"}],"type":"function"},{"inputs":[],"type":"constructor"}],
-    binary: "606060405260008054600160a060020a0319908116331790915560018054821673f6549feb3bc3dcfc24b7b2b43aabb1b53169fb0617905560028054909116736c21c01e97374f324f863f73112207d4122eb08b179055610146806100646000396000f3606060405236156100405760e060020a600035046302d05d3f811461009357806341c0e1b5146100a557806352709725146100cd57806373688914146100df575b6100f16000600160a060020a03301631816002820681146100645760001991909101905b506001546002820490600160a060020a03168382606082818181858883f193505050501515610103575b505090565b61012f600054600160a060020a031681565b61014260005433600160a060020a039081169116141561014457600054600160a060020a0316ff5b61012f600254600160a060020a031681565b61012f600154600160a060020a031681565b60408051918252519081900360200190f35b604051600254600160a060020a0316908490839082818181858883f19350505050151561008e57610002565b600160a060020a03166060908152602090f35b005b56",
-    unlinked_binary: "606060405260008054600160a060020a0319908116331790915560018054821673f6549feb3bc3dcfc24b7b2b43aabb1b53169fb0617905560028054909116736c21c01e97374f324f863f73112207d4122eb08b179055610146806100646000396000f3606060405236156100405760e060020a600035046302d05d3f811461009357806341c0e1b5146100a557806352709725146100cd57806373688914146100df575b6100f16000600160a060020a03301631816002820681146100645760001991909101905b506001546002820490600160a060020a03168382606082818181858883f193505050501515610103575b505090565b61012f600054600160a060020a031681565b61014260005433600160a060020a039081169116141561014457600054600160a060020a0316ff5b61012f600254600160a060020a031681565b61012f600154600160a060020a031681565b60408051918252519081900360200190f35b604051600254600160a060020a0316908490839082818181858883f19350505050151561008e57610002565b600160a060020a03166060908152602090f35b005b56",
-    address: "0xce1fe29513f9bf8bfd5e69ca82d312708ff9ca06",
-    generated_with: "2.0.8",
+    binary: "606060405260008054600160a060020a0319908116331790915560018054821673f6549feb3bc3dcfc24b7b2b43aabb1b53169fb0617905560028054909116736c21c01e97374f324f863f73112207d4122eb08b179055610134806100646000396000f3606060405236156100405760e060020a600035046302d05d3f811461007357806341c0e1b51461008557806352709725146100ad57806373688914146100bf575b6100d16001546000906002340490600160a060020a03168282606082818181858883f1935050505015156100eb57610002565b61011d600054600160a060020a031681565b61013060005433600160a060020a039081169116141561013257600054600160a060020a0316ff5b61011d600254600160a060020a031681565b61011d600154600160a060020a031681565b60408051918252519081900360200190f35b600191505090565b600254604051600160a060020a0391909116908390348490039082818181858883f1935050505015156100e357610002565b600160a060020a03166060908152602090f35b005b56",
+    unlinked_binary: "606060405260008054600160a060020a0319908116331790915560018054821673f6549feb3bc3dcfc24b7b2b43aabb1b53169fb0617905560028054909116736c21c01e97374f324f863f73112207d4122eb08b179055610134806100646000396000f3606060405236156100405760e060020a600035046302d05d3f811461007357806341c0e1b51461008557806352709725146100ad57806373688914146100bf575b6100d16001546000906002340490600160a060020a03168282606082818181858883f1935050505015156100eb57610002565b61011d600054600160a060020a031681565b61013060005433600160a060020a039081169116141561013257600054600160a060020a0316ff5b61011d600254600160a060020a031681565b61011d600154600160a060020a031681565b60408051918252519081900360200190f35b600191505090565b600254604051600160a060020a0391909116908390348490039082818181858883f1935050505015156100e357610002565b600160a060020a03166060908152602090f35b005b56",
+    address: "0xbbe2f5dab79a1794497e5d9b38c1817ada3d3e61",
+    generated_with: "2.0.9",
     contract_name: "RevShare"
   };
 
@@ -5813,6 +5813,28 @@ function setAddress() {
   document.getElementById("qr").innerHTML = "<img src=\"https://chart.googleapis.com/chart?cht=qr&chs=350&chl=ether:"+ RevShare.deployed_address +"\" height=\"250\" />";
 }
 
+function killContract(){
+  var selectBox = document.getElementById('select-box');
+  var selectedAddr = selectBox.options[selectBox.selectedIndex].text;
+  web3.eth.sendTransaction({from: selectedAddr}, function(error, result){
+    if(error) {
+      console.log(error);
+      setStatus(error);
+    } else{
+      RevShare.deployed().kill;
+      transactionReceipt(result);
+    }
+  });
+}
+
+function killSwitch(){
+  if(document.getElementById('killbutton').disabled){
+    document.getElementById('killbutton').disabled = false;
+  }else {
+    document.getElementById('killbutton').disabled = true;
+  }
+}
+
 function refreshBalances() {
   document.getElementById("c_balance").innerHTML = web3.fromWei(web3.eth.getBalance(RevShare.deployed_address), "ether").toFixed(5);
   document.getElementById("a_balance").innerHTML = web3.fromWei(web3.eth.getBalance(document.getElementById("a_address").innerHTML), "ether").toFixed(5);
@@ -5820,32 +5842,83 @@ function refreshBalances() {
   document.getElementById("cb_balance").innerHTML = web3.fromWei(web3.eth.getBalance(web3.eth.coinbase), "ether").toFixed(5)+ " ETH";
 };
 
-function send() {
+function transactionDetails(details) {
+  var tableData = "<tr><td>" + details.trans + "</td><td>" + details.gas + "</td><td>" + details.block + "</td></tr>";
+  document.getElementById("transaction-table").innerHTML += tableData;
+};
+
+function send(addr) {
   var rs = RevShare.deployed();
+
+  var sendToAddress;
+
+  switch(addr) {
+      case "both":
+          sendToAddress = RevShare.deployed_address;
+          break;
+      case "a":
+          sendToAddress = document.getElementById("a_address").innerHTML;
+          break;
+      case "b":
+          sendToAddress = document.getElementById("b_address").innerHTML;
+          break;
+      default:
+          console.log("Error with the send-to address");
+  }
 
   var amount = web3.toWei(parseFloat(document.getElementById("amount").value), "ether");
 
   setStatus("Initiating transaction... (please wait)");
 
-  web3.eth.sendTransaction({from: web3.eth.coinbase, to: RevShare.deployed_address, value: amount}, function(error, result) {
+  web3.eth.sendTransaction({from: web3.eth.coinbase, to: sendToAddress, value: amount}, function(error, result) {
     if(error) {
       console.log(error);
       setStatus(error);
     }
     else {
-      web3.eth.getTransactionReceiptMined(result).then(function(receipt) {
-        setStatus("Transaction complete!");
-        refreshBalances();
-      }).catch(function(e) {
-        console.log(e);
-        setStatus(e);
-      });
+      transactionReceipt(result);
+      // web3.eth.getTransactionReceiptMined(result).then(function(receipt) {
+      //   var details = {
+      //     trans: receipt.transactionHash,
+      //     gas: receipt.gasUsed,
+      //     block: receipt.blockNumber
+      //   }
+      //   console.log(details);
+      //   setStatus("Transaction complete!");
+      //   refreshBalances();
+      //   transactionDetails(details);
+      // }).catch(function(e) {
+      //   console.log(e);
+      //   setStatus(e);
+      // });
     }
   });
 };
 
+function transactionReceipt(result){
+  console.log(result);
+  web3.eth.getTransactionReceiptMined(result).then(function(receipt) {
+    var details = {
+      trans: receipt.transactionHash,
+      gas: receipt.gasUsed,
+      block: receipt.blockNumber
+    }
+    console.log(details);
+    setStatus("Transaction complete!");
+    refreshBalances();
+    transactionDetails(details);
+  }).catch(function(e) {
+    console.log(e);
+    setStatus(e);
+  });
+
+}
+
 window.onload = function() {
   web3.eth.getAccounts(function(err, accs) {
+    console.log(web3.eth.coinbase);
+    console.log(accs);
+
     if (err != null) {
       alert("There was an error fetching your accounts.");
       return;
@@ -5854,6 +5927,10 @@ window.onload = function() {
     if (accs.length == 0) {
       alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
       return;
+    }
+
+    for (var i = 0; i < accs.length; i++) {
+      document.getElementById("select-box").innerHTML += '<option>' + accs[i] + '</option>'
     }
 
     accounts = accs;

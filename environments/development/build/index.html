@@ -40,21 +40,53 @@
     </table>
 
     <div class="row">
-      <h2 style="text-align: center; padding-top: 20px;">Pay Contract</h2>
-      <div class="col-lg-6 payment payment-web">
+      <h2 style="text-align: center; padding-top: 20px;"><img src="images/ethereum.png" alt="Ethereum">Pay Contract</h2>
+      <div class="col-lg-8 payment payment-web">
         <h3>Web</h3>
         <div id="status"></div>
-        <div class="col-lg-8" style="padding-top: 4px;"><input style="height: 38px;" type="text" class="form-control" id="amount" placeholder="Amount in ETH"/></div>
-        <div class="col-lg-4"><button class="btn btn-primary btn-lg" onclick="send();">SEND</button></div>
+        <div class="col-lg-8" style="padding-top: 4px;"><input style="height: 38px; margin-bottom:10px;" type="text" class="form-control" id="amount" placeholder="Amount in ETH"/></div>
+        <div class="col-lg-4"></div>
+        <div class="clearfix"></div>
+
+        <div class="col-lg-4"><button class="btn btn-primary btn-lg" onclick="send('both');">Send Equal</button></div>
+        <div class="col-lg-4"><button class="btn btn-primary btn-lg" onclick="send('a');">Send A</button></div>
+        <div class="col-lg-4"><button class="btn btn-primary btn-lg" onclick="send('b');">Send B</button></div>
+
         <div class="col-lg-12" style="padding-top: 10px;">Coinbase Balance: <span id="cb_balance"></span></div>
       </div>
-      <div class="col-lg-6 payment">
+      <div class="col-lg-4 payment">
         <h3>Mobile</h3>
         <div id="qr"></div>
       </div>
     </div>
+
+    <table class="table table-fluid" id="transaction-table">
+      <tr>
+        <th>Transaction</th>
+        <th>Gas Usage</th>
+        <th>Block Number</th>
+      </tr>
+    </table>
+
+    <div class="row">
+      <h2 style="text-align: center; padding-top: 20px; color: red;">Kill Switch</h2>
+
+      <div class="col-lg-6">
+        <div class="form-inline">
+          <label>Are you sure?
+            <input type="checkbox" id="blankCheckbox" value="option1" onchange="killSwitch()">
+          </label>
+          <button id="killbutton" class="btn btn-danger btn-lg" onclick="killContract()" disabled>Kill</button>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <select class="form-control" id="select-box">
+        </select>
+      </div>
+    </div>
+
   </div>
   <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
 </body>
 </html>

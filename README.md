@@ -1,5 +1,10 @@
 # RevShare
-Simple revenue sharing dApp. Splits incoming ether between the owners of the contract.
+Fork of code from [Distributed Systems](https://github.com/dsystems-io). Simple revenue sharing dApp. Splits incoming ether between the owners of the contract.
+
+Newly added functionality:
+* send individual transaction to two seperate accounts
+* table showing transaction hash, gas usage, and block number
+* kill contract button (under development)
 
 ## Dependencies
 * [Node.js & npm](https://nodejs.org)
@@ -13,8 +18,6 @@ Simple revenue sharing dApp. Splits incoming ether between the owners of the con
 ## Preview
 ![alt text](https://raw.githubusercontent.com/dsystems-io/rev-share/master/app/images/preview.png "App Preview")
 
-
-
 ## Todo
 * Dynamically pass owners instead of hardcoding
 * Better test coverage
@@ -22,6 +25,7 @@ Simple revenue sharing dApp. Splits incoming ether between the owners of the con
 * Select different account
 * On-the-fly account unlocking
 * Responsive QR - refresh when account receives tx
+* Kill switch
 
 ## License
 [MIT](https://github.com/dsystems-io/rev-share/blob/master/LICENSE)
