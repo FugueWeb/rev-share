@@ -15,15 +15,19 @@ function setAddress() {
 function killContract(){
   var selectBox = document.getElementById('select-box');
   var selectedAddr = selectBox.options[selectBox.selectedIndex].text;
-  web3.eth.sendTransaction({from: selectedAddr}, function(error, result){
-    if(error) {
-      console.log(error);
-      setStatus(error);
-    } else{
-      RevShare.deployed().kill;
-      transactionReceipt(result);
-    }
+  console.log(selectedAddr);
+  RevShare.deployed().kill({from: selectedAddr}).then(function(result){
+    console.log(result);
   });
+  //   , function (error, result){
+  //   if(error) {
+  //     console.log(error);
+  //     setStatus(error);
+  //   } else{
+  //     console.log(result);
+  //     transactionReceipt(result);
+  //   }
+  // });
 }
 
 function killSwitch(){
@@ -76,20 +80,6 @@ function send(addr) {
     }
     else {
       transactionReceipt(result);
-      // web3.eth.getTransactionReceiptMined(result).then(function(receipt) {
-      //   var details = {
-      //     trans: receipt.transactionHash,
-      //     gas: receipt.gasUsed,
-      //     block: receipt.blockNumber
-      //   }
-      //   console.log(details);
-      //   setStatus("Transaction complete!");
-      //   refreshBalances();
-      //   transactionDetails(details);
-      // }).catch(function(e) {
-      //   console.log(e);
-      //   setStatus(e);
-      // });
     }
   });
 };

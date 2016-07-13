@@ -5738,7 +5738,7 @@ var Pudding =
     abi: [{"constant":true,"inputs":[],"name":"creator","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[],"name":"kill","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"owner2","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[],"name":"owner1","outputs":[{"name":"","type":"address"}],"type":"function"},{"inputs":[],"type":"constructor"}],
     binary: "606060405260008054600160a060020a0319908116331790915560018054821673f6549feb3bc3dcfc24b7b2b43aabb1b53169fb0617905560028054909116736c21c01e97374f324f863f73112207d4122eb08b179055610134806100646000396000f3606060405236156100405760e060020a600035046302d05d3f811461007357806341c0e1b51461008557806352709725146100ad57806373688914146100bf575b6100d16001546000906002340490600160a060020a03168282606082818181858883f1935050505015156100eb57610002565b61011d600054600160a060020a031681565b61013060005433600160a060020a039081169116141561013257600054600160a060020a0316ff5b61011d600254600160a060020a031681565b61011d600154600160a060020a031681565b60408051918252519081900360200190f35b600191505090565b600254604051600160a060020a0391909116908390348490039082818181858883f1935050505015156100e357610002565b600160a060020a03166060908152602090f35b005b56",
     unlinked_binary: "606060405260008054600160a060020a0319908116331790915560018054821673f6549feb3bc3dcfc24b7b2b43aabb1b53169fb0617905560028054909116736c21c01e97374f324f863f73112207d4122eb08b179055610134806100646000396000f3606060405236156100405760e060020a600035046302d05d3f811461007357806341c0e1b51461008557806352709725146100ad57806373688914146100bf575b6100d16001546000906002340490600160a060020a03168282606082818181858883f1935050505015156100eb57610002565b61011d600054600160a060020a031681565b61013060005433600160a060020a039081169116141561013257600054600160a060020a0316ff5b61011d600254600160a060020a031681565b61011d600154600160a060020a031681565b60408051918252519081900360200190f35b600191505090565b600254604051600160a060020a0391909116908390348490039082818181858883f1935050505015156100e357610002565b600160a060020a03166060908152602090f35b005b56",
-    address: "0xbbe2f5dab79a1794497e5d9b38c1817ada3d3e61",
+    address: "0x9e58554703c1591204fc888ad507a9d1b01dfd1b",
     generated_with: "2.0.9",
     contract_name: "RevShare"
   };
@@ -5816,15 +5816,19 @@ function setAddress() {
 function killContract(){
   var selectBox = document.getElementById('select-box');
   var selectedAddr = selectBox.options[selectBox.selectedIndex].text;
-  web3.eth.sendTransaction({from: selectedAddr}, function(error, result){
-    if(error) {
-      console.log(error);
-      setStatus(error);
-    } else{
-      RevShare.deployed().kill;
-      transactionReceipt(result);
-    }
+  console.log(selectedAddr);
+  RevShare.deployed().kill({from: selectedAddr}).then(function(result){
+    console.log(result);
   });
+  //   , function (error, result){
+  //   if(error) {
+  //     console.log(error);
+  //     setStatus(error);
+  //   } else{
+  //     console.log(result);
+  //     transactionReceipt(result);
+  //   }
+  // });
 }
 
 function killSwitch(){
@@ -5877,20 +5881,6 @@ function send(addr) {
     }
     else {
       transactionReceipt(result);
-      // web3.eth.getTransactionReceiptMined(result).then(function(receipt) {
-      //   var details = {
-      //     trans: receipt.transactionHash,
-      //     gas: receipt.gasUsed,
-      //     block: receipt.blockNumber
-      //   }
-      //   console.log(details);
-      //   setStatus("Transaction complete!");
-      //   refreshBalances();
-      //   transactionDetails(details);
-      // }).catch(function(e) {
-      //   console.log(e);
-      //   setStatus(e);
-      // });
     }
   });
 };

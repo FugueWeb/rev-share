@@ -4,7 +4,7 @@ Fork of code from [Distributed Systems](https://github.com/dsystems-io). Simple 
 Newly added functionality:
 * send individual transaction to two seperate accounts
 * table showing transaction hash, gas usage, and block number
-* kill contract button (under development)
+* kill contract button - loops over all available addresses associated with running nodes, and based on which address is selected, allows the `kill()` method to be called or not (e.g., only the creator of the contract can execute)
 
 ## Dependencies
 * [Node.js & npm](https://nodejs.org)
@@ -25,7 +25,6 @@ Newly added functionality:
 * Select different account
 * On-the-fly account unlocking
 * Responsive QR - refresh when account receives tx
-* Kill switch
 
 ## License
 [MIT](https://github.com/dsystems-io/rev-share/blob/master/LICENSE)
